@@ -3,7 +3,7 @@
 //
 // Estudiantes:
 // Alex Castiillo Carrasco
-//
+// Isamar López Rodríguez
 // Rafael L. Marrero Fernández
 
 #include <iostream>
