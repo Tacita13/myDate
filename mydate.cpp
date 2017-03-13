@@ -25,6 +25,7 @@ int MyDate::elapsed() const
 }
 
 
+// Constructores default y parameterizado
 MyDate::MyDate(int month, int day, int year)
 {
     set(month, day, year);
@@ -37,6 +38,7 @@ MyDate::MyDate()
     year=0;
 }
 
+// Getters
 int MyDate::getMonth()
 {
     return month;
@@ -52,6 +54,7 @@ int MyDate::getYear()
     return year;
 }
 
+// Setter
 void MyDate::set(int month, int day, int year)
 {
     if(month >=1 && month <= 12)
@@ -84,6 +87,7 @@ void MyDate::set(int month, int day, int year)
     }
 }
 
+// Devuelven el dia de la semana y el mes
 string MyDate::dayOfWeek() const
 {
     return DAY[(day+month+year+year/4)%7];
@@ -94,6 +98,7 @@ string MyDate::getMonthStr() const
     return MONTH[month-1];
 }
 
+// Agrega dias a la fecha
 void MyDate::addDays(int num)
 {
     for (int i=0; i <num; i++)
@@ -116,11 +121,13 @@ void MyDate::addDays(int num)
     }
 }
 
+// Verifica si year es un leap year
 bool MyDate::isLeapYear() const
 {
     return ((year%4==0 )||(year%400==0));
 }
 
+//Devuelve la diferencia de dias entre dos fechas
 int MyDate::difference(const MyDate &d) const
 {
    int result=(year-d.year)*365;
@@ -136,6 +143,7 @@ int MyDate::difference(const MyDate &d) const
 
 }
 
+// Verifica si dos fechas son iguales
 bool MyDate::isEqual(const MyDate &d) const
 {
     return this->month==d.month &&
@@ -143,6 +151,7 @@ bool MyDate::isEqual(const MyDate &d) const
             this->day == d.day;
 }
 
+// Verifica si dos fechas no son iguales
 bool MyDate::isDifferent(const MyDate &d) const
 {
     return this->month!=d.month &&
@@ -150,6 +159,7 @@ bool MyDate::isDifferent(const MyDate &d) const
             this->day != d.day;
 }
 
+// Verifica si la fecha esta antes del parametro
 bool MyDate::isBefore(const MyDate &d) const
 {
     return (this->year < d.year)||
@@ -157,6 +167,7 @@ bool MyDate::isBefore(const MyDate &d) const
             (this->month<=d.month && this->year <=d.year && this->day < d.day);
 }
 
+// Verifica si la fecha esta despues del parametro
 bool MyDate::isAfter(const MyDate &d) const
 {
     return (this->year > d.year)||
@@ -164,6 +175,7 @@ bool MyDate::isAfter(const MyDate &d) const
             (this->month>=d.month && this->year >=d.year && this->day > d.day);
 }
 
+// Forma sencilla para presentar la fecha: "xx/xx/xxxx"
 string MyDate::simpleRepre()
 {
     stringstream ss ;
@@ -190,6 +202,7 @@ string MyDate::simpleRepre()
     return ss.str() ;
 }
 
+// Forma normal para presentar la fecha, ejemplo: "April 22, 1995"
 string MyDate::niceRepre()
 {
     stringstream ss ;
@@ -199,6 +212,7 @@ string MyDate::niceRepre()
     return ss.str() ;
 }
 
+// Forma alterna para isEqual
 bool MyDate::operator==(const MyDate &d) const
 {
     return this->month==d.month &&
@@ -206,6 +220,7 @@ bool MyDate::operator==(const MyDate &d) const
             this->day == d.day;
 }
 
+// Forma alterna para isDifferent
 bool MyDate::operator!=(const MyDate &d) const
 {
     return this->month!=d.month &&
@@ -213,6 +228,7 @@ bool MyDate::operator!=(const MyDate &d) const
             this->day != d.day;
 }
 
+// Forma alterna para isBefore
 bool MyDate::operator<(const MyDate &d) const
 {
     return (this->year < d.year)||
@@ -220,6 +236,7 @@ bool MyDate::operator<(const MyDate &d) const
             (this->month<=d.month && this->year <=d.year && this->day < d.day);
 }
 
+// Forma alterna para isAfter
 bool MyDate::operator>(const MyDate &d) const
 {
     return (this->year > d.year)||
@@ -227,6 +244,7 @@ bool MyDate::operator>(const MyDate &d) const
             (this->month>=d.month && this->year >=d.year && this->day > d.day);
 }
 
+// Forma alterna para addDays
 void MyDate::operator+(int num)
 {
     for (int i=0; i <num; i++)
@@ -249,6 +267,7 @@ void MyDate::operator+(int num)
     }
 }
 
+// Opuesto a addDays, resta dias en vez de sumar dias a la fecha
 void MyDate::operator-(int num)
 {
     for (int i=0; i <num; i++)
@@ -272,6 +291,7 @@ void MyDate::operator-(int num)
     }
 }
 
+// Forma alterna para difference
 int MyDate::operator-(const MyDate &d) const
 {
     int result=(year-d.year)*365;
@@ -286,12 +306,14 @@ int MyDate::operator-(const MyDate &d) const
     return result;
 }
 
+// Funcion friend para insertar en la pantalla la fecha
 ostream &operator<<( ostream &out, const MyDate &d)
 {
     out << MONTH[d.month - 1] << ' ' << d.day << ", " << d.year ;
     return out;
 }
 
+// Funcion friend para extraer la fecha de un objeto MyDate
 istream &operator>> (istream& in, MyDate &d)
 {
     char ch ;
