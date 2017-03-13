@@ -86,7 +86,7 @@ void MyDate::set(int month, int day, int year)
 
 string MyDate::dayOfWeek() const
 {
-    return DAY[elapsed()%7];
+    return DAY[(day+month+year+year/4)%7];
 }
 
 string MyDate::getMonthStr() const
