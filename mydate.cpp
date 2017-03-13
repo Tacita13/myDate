@@ -178,32 +178,32 @@ string MyDate::simpleRepre()
 string MyDate::niceRepre()
 {
     stringstream ss ;
-    ss << months[month - 1] << ' ' << day << ", " << year ;
+    ss << MONTH[month - 1] << ' ' << day << ", " << year ;
     return ss.str() ;
 }
 
-bool MyDate::operator==(const MyDate &s) const
+bool MyDate::operator==(const MyDate &d) const
 {
     return this->month==d.month &&
             this->year ==d.year &&
             this->day == d.day;
 }
 
-bool MyDate::operator!=(const MyDate &s) const
+bool MyDate::operator!=(const MyDate &d) const
 {
     return this->month!=d.month &&
             this->year !=d.year &&
             this->day != d.day;
 }
 
-bool MyDate::operator<(const MyDate &s) const
+bool MyDate::operator<(const MyDate &d) const
 {
     return (this->year < d.year)||
             (this->year<=d.year && this->month < d.month)||
             (this->month<=d.month && this->year <=d.year && this->day < d.day);
 }
 
-bool MyDate::operator>(const MyDate &s) const
+bool MyDate::operator>(const MyDate &d) const
 {
     return (this->year > d.year)||
             (this->year>=d.year && this->month > d.month)||
@@ -268,37 +268,37 @@ int operator-(const MyDate &d) const
     result += (day-d.day);
 }
 
-friend ostream &operator<<( ostream &out, const MyDate &s)
+friend ostream &operator<<( ostream &out, const MyDate &d)
 {
       if(month < 10)                  // 0x/dd/yyyy
           out << '0';
-          out << d->month;
+          out << d.month;
           out << '/';
       else                            // xx/dd/yyyy
-          out << d->month;
+          out << d.month;
           out << '/';
 
       if(day < 10)                    // mm/0x/yyyy
           out << '0';
-          out << d->day;
+          out << d.day;
           out << '/';
       else                            // mm/xx/yyyy
-          out << d->day;
+          out << d.day;
           out << '/';
 
-      out << d->year;
+      out << d.year;
       return out;
 }
 
-friend istream &operator>> (istream&, MyDate &)
+friend istream &operator>> (istream &in, MyDate &d)
 {
   char ch;
 
-  in>>d->month;
+  in>>d.month;
   in>>ch;
-  in>>d->day;
+  in>>d.day;
   in>>ch;
-  in>>d->year;
+  in>>d.year;
 
   return in;
 }
