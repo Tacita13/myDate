@@ -4,13 +4,17 @@
 #include <string>
 using namespace std;
 
+// Lista que contiene los dias de la semana
 string DAY[]={"Friday", "Saturday", "Sunday","Monday","Tuesday","Wednesday","Thursday"};
 
+// Lista que contiene los meses en forma string
 string MONTH[]={"January","February","March", "April", "May", "June", "July", "August"
 , "September", "October", "November", "December"};
 
 int totalMonthDays[]={31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
+// Formula dada en el pdf de la Tarea. Es usada para
+// calcular y el año es un leap year.
 int MyDate::elapsed() const
 {
     int d=day,m=month,y=year;
@@ -87,7 +91,8 @@ void MyDate::set(int month, int day, int year)
     }
 }
 
-// Devuelven el dia de la semana y el mes
+// Devuelven el dia de la semana y el mes.
+// Para buscar el dia hay que calcular (day+month+year+year/4)%7
 string MyDate::dayOfWeek() const
 {
     return DAY[(day+month+year+year/4)%7];
