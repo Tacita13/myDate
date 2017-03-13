@@ -1,6 +1,10 @@
+// CCOM 4029: Lenguajes de Alto Nivel
+// Profesor: Eric Gamess
+//
+// Estudiantes:
 // Alex Castiillo Carrasco
 //
-// Rafael Marrero Fernandez
+// Rafael L. Marrero Fernandez
 
 #include <iostream>
 #include "mydate.h"
