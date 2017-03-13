@@ -105,11 +105,4 @@ void ascendentOrder(MyDate array[], int size)
 
             array[location] = temp ;
         }
-
-    cout << "After sort: " ;
-
-    for(int i = 0 ; i < size ; i++)
-    {
-        cout << array[i] << " | " ;
-    }
 }
