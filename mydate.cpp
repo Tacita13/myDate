@@ -127,7 +127,6 @@ int MyDate::difference(const MyDate &d) const
 
    for (int i=0; i< d.month-1;i++)
        result -= (i+1)*totalMonthDays[d.month-2];
-
    result += (day-d.day);
 
 }
@@ -162,13 +161,25 @@ bool MyDate::isAfter(const MyDate &d) const
 
 string MyDate::simpleRepre()
 {
-    
+    stringstream ss ;
+    if(month < 10)                  // 0x/dd/yyyy
+        ss << '0' << month << '/' ;
+    else                            // xx/dd/yyyy
+        ss << month << '/' ;
+    if(day < 10)                    // mm/0x/yyyy
+        ss << '0' << day << '/' ;
+    else                            // mm/xx/yyyy
+        ss << day << '/' ;
+      ss << year ;
+    return ss.str() ; 
     
 }
 
 string MyDate::niceRepre()
 {
-    
+    stringstream ss ;
+    ss << months[month - 1] << ' ' << day << ", " << year ;
+    return ss.str() ;
 }
 
 bool MyDate::operator==(const MyDate &s) const
@@ -259,10 +270,35 @@ int operator-(const MyDate &d) const
 
 friend ostream &operator<<( ostream &out, const MyDate &s)
 {
+      if(month < 10)                  // 0x/dd/yyyy
+          out << '0';
+          out << d->month;
+          out << '/';
+      else                            // xx/dd/yyyy
+          out << d->month;
+          out << '/';
 
+      if(day < 10)                    // mm/0x/yyyy
+          out << '0';
+          out << d->day;
+          out << '/';
+      else                            // mm/xx/yyyy
+          out << d->day;
+          out << '/';
+
+      out << d->year;
+      return out;
 }
 
 friend istream &operator>> (istream&, MyDate &)
 {
+  char ch;
 
+  in>>d->month;
+  in>>ch;
+  in>>d->day;
+  in>>ch;
+  in>>d->year;
+
+  return in;
 }
