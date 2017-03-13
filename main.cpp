@@ -4,7 +4,7 @@
 // Estudiantes:
 // Alex Castiillo Carrasco
 //
-// Rafael L. Marrero Fernandez
+// Rafael L. Marrero Fernández
 
 #include <iostream>
 #include "mydate.h"
