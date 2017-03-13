@@ -63,16 +63,27 @@ public:
     // Returns a string that represents this date with a nice format, e.g.,    // "February 24, 2016"
     string niceRepre();
 
-    bool operator==(const MyDate &s) const ;
+     // Returns true if this date is equal to d, otherwise false
+    bool operator==(const MyDate &s) const ; 
+    
+    // Returns true if this date is different from d, otherwise false
     bool operator!=(const MyDate &s) const ;
+    
+    // Returns true if this date is chronologically before d, otherwise false
     bool operator<(const MyDate &s) const ;
+    
+    // Returns true if this date is chronologically after d, otherwise false
     bool operator>(const MyDate &s) const ;
 
+    // Returns a string that represents this date with a nice format, e.g.,    // "February 24, 2016"
     friend ostream &operator<<( ostream &out, const MyDate &s) ;
+    
+    // Let the use of "cin >> mm/dd/yyyy" to enter a date.
     friend istream &operator>> (istream&, MyDate &) ;
 
+    // Returns elapsed days from 
     int elapsed() ;
-
+    
 };
 
 #endif // MYDATE_H
