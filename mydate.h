@@ -71,8 +71,6 @@ public:
     friend ostream &operator<<( ostream &out, const MyDate &s) ;
     friend istream &operator>> (istream&, MyDate &) ;
 
-    void ascendentOrder(MyDate array[], int size) ;
-
     int elapsed() ;
 
 };
