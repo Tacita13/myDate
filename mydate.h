@@ -80,9 +80,6 @@ public:
     
     // Let the use of "cin >> mm/dd/yyyy" to enter a date.
     friend istream &operator>> (istream&, MyDate &) ;
-
-    // Returns elapsed days from 
-    int elapsed() ;
     
 };
 
