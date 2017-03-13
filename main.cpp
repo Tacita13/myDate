@@ -3,8 +3,7 @@
 
 using namespace std;
 
-//Sorts in ascending order an array of dates
-void ascendentOrder(MyDate array[], int size);
+void ascendentOrder(MyDate array[], int size) ;
 
 int main()
 {
@@ -39,47 +38,72 @@ int main()
 
     cout << "\nAre date1 and date2 equal? " ;
 
-    if( date1.isEqual(date2) )
+    if( date1 == date2 )
         cout << "Yes\n" ;
     else
         cout << "No\n" ;
 
     cout << "\nAre date1 and date2 different? " ;
 
-    if( date1.isDifferent(date2) )
+    if( date1 != date2 )
         cout << "Yes\n" ;
     else
         cout << "No\n" ;
 
     cout << "\nIs date1 before date2? " ;
 
-    if( date1.isBefore(date2) )
+    if( date1 < date2 )
         cout << "Yes\n" ;
     else
         cout << "No\n" ;
 
     cout << "\nIs date1 after date2? " ;
 
-    if( date1.isAfter(date2) )
+    if( date1 > date2 )
         cout << "Yes\n" ;
     else
         cout << "No\n" ;
 
+    MyDate date3 ;
+
+    cout << "\nEnter a date in the form mm/dd/yyyy: " ;
+    cin >> date3 ;
+    cout << endl << date3 << endl ;
+
+    MyDate list[] = {date3, date1, date2} ;
+
+    ascendentOrder(list, 3) ;
+
     return 0 ;
 }
 
-//Sorts in ascending order an array of dates
-void MyDate::ascendentOrder(MyDate array[], int size)
+void ascendentOrder(MyDate array[], int size)
 {
-  int temp;
-  for(i=1;i<n;++i)
-  {
-      for(j=0;j<(n-i);++j)
-          if(array[j]>array[j+1])
-          {
-              temp=array[j];
-              array[j]=array[j+1];
-              array[j+1]=temp;
-          }
-  }
-  }
+    int n, location ;
+
+    MyDate temp ;
+
+    for (n = 1 ; n < size ; n++)
+        if (array[n] < array[n - 1])
+        {
+            temp = array[n] ;
+
+            location = n ;
+
+            do
+            {
+                array[location] = array[location - 1] ;
+
+                location-- ;
+            } while (location > 0 && array[location - 1] > temp) ;
+
+            array[location] = temp ;
+        }
+
+    cout << "After sort: " ;
+
+    for(int i = 0 ; i < size ; i++)
+    {
+        cout << array[i] << " | " ;
+    }
+}
