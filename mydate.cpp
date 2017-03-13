@@ -13,13 +13,14 @@ int totalMonthDays[]={31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
 int MyDate::elapsed() const
 {
-    if (month=1 || month=2)
+    int d=day,m=month,y=year;
+    if (m==1 || m==2)
     {
-        month+=12;
-        year--;
+        m+=12;
+        y--;
     }
-    int ElapsedDays=365*year + year/4 - year/100 +year/400 +day
-            +(153*month+8)-578135;
+    int ElapsedDays=365*y + y/4 - y/100 +y/400 +d
+            +(153*m+8)-578135;
     return ElapsedDays;
 }
 
@@ -67,10 +68,10 @@ void MyDate::set(int month, int day, int year)
         else if (day>=0 && day <= 28)
             this->day=day;
         break;
-    case 4:
-    case 6:
-    case 9:
-    case 11:
+    case 3:
+    case 5:
+    case 8:
+    case 10:
         if(day>=0 && day <= 30)
             this->day=day;
         break;
@@ -78,6 +79,8 @@ void MyDate::set(int month, int day, int year)
         if(day>=0 && day <= 31)
             this->day=day;
        break;
+
+        //int totalMonthDays[]={31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
     }
 }
 
@@ -127,7 +130,9 @@ int MyDate::difference(const MyDate &d) const
 
    for (int i=0; i< d.month-1;i++)
        result -= (i+1)*totalMonthDays[d.month-2];
+
    result += (day-d.day);
+   return result;
 
 }
 
@@ -162,23 +167,35 @@ bool MyDate::isAfter(const MyDate &d) const
 string MyDate::simpleRepre()
 {
     stringstream ss ;
+
     if(month < 10)                  // 0x/dd/yyyy
         ss << '0' << month << '/' ;
     else                            // xx/dd/yyyy
         ss << month << '/' ;
+
     if(day < 10)                    // mm/0x/yyyy
         ss << '0' << day << '/' ;
     else                            // mm/xx/yyyy
         ss << day << '/' ;
-      ss << year ;
-    return ss.str() ; 
-    
+
+    if(year < 10)                   // mm/dd/000x
+        ss << "000" << year ;
+    else if(year < 100)             // mm/dd/00xx
+        ss << "00" << year ;
+    else if(year < 1000)            // mm/dd/0xxx
+        ss << '0' << year ;
+    else                            // mm/dd/xxxx
+        ss << year ;
+
+    return ss.str() ;
 }
 
 string MyDate::niceRepre()
 {
     stringstream ss ;
+
     ss << MONTH[month - 1] << ' ' << day << ", " << year ;
+
     return ss.str() ;
 }
 
@@ -210,7 +227,7 @@ bool MyDate::operator>(const MyDate &d) const
             (this->month>=d.month && this->year >=d.year && this->day > d.day);
 }
 
-void MyDate::operator+(int num) const
+void MyDate::operator+(int num)
 {
     for (int i=0; i <num; i++)
     {
@@ -232,7 +249,7 @@ void MyDate::operator+(int num) const
     }
 }
 
-void MyDate::operator-(int num) const
+void MyDate::operator-(int num)
 {
     for (int i=0; i <num; i++)
     {
@@ -255,7 +272,7 @@ void MyDate::operator-(int num) const
     }
 }
 
-int operator-(const MyDate &d) const
+int MyDate::operator-(const MyDate &d) const
 {
     int result=(year-d.year)*365;
 
@@ -266,39 +283,24 @@ int operator-(const MyDate &d) const
         result -= (i+1)*totalMonthDays[d.month-2];
 
     result += (day-d.day);
+    return result;
 }
 
-friend ostream &operator<<( ostream &out, const MyDate &d)
+ostream &operator<<( ostream &out, const MyDate &d)
 {
-      if(month < 10)                  // 0x/dd/yyyy
-          out << '0';
-          out << d.month;
-          out << '/';
-      else                            // xx/dd/yyyy
-          out << d.month;
-          out << '/';
-
-      if(day < 10)                    // mm/0x/yyyy
-          out << '0';
-          out << d.day;
-          out << '/';
-      else                            // mm/xx/yyyy
-          out << d.day;
-          out << '/';
-
-      out << d.year;
-      return out;
+    out << MONTH[d.month - 1] << ' ' << d.day << ", " << d.year ;
+    return out;
 }
 
-friend istream &operator>> (istream &in, MyDate &d)
+istream &operator>> (istream& in, MyDate &d)
 {
-  char ch;
+    char ch ;
 
-  in>>d.month;
-  in>>ch;
-  in>>d.day;
-  in>>ch;
-  in>>d.year;
+        in >> d.month ;
+        in >> ch ;
+        in >> d.day ;
+        in >> ch ;
+        in >> d.year ;
 
-  return in;
+        return in ;
 }
