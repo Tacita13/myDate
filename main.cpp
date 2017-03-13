@@ -1,3 +1,7 @@
+// Alex Castiillo Carrasco
+//
+// Rafael Marrero Fernandez
+
 #include <iostream>
 #include "mydate.h"
 
