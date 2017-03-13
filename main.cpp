@@ -9,7 +9,7 @@ int main()
 {
     cout << "Hello World!" << endl ;
 
-    MyDate date1(11, 26, 1995) ;
+    MyDate date1(10, 31, 1995) ;
 
     cout << "\nMonth: " << date1.getMonthStr() << endl ;
     cout << "Day: " << date1.getDay() << endl ;
@@ -27,7 +27,7 @@ int main()
 
     cout << "\nDate of 2 before setFunction: " << date2.simpleRepre() << " " << date2.niceRepre() << endl ;
 
-    date2.set(4,1,2003) ;
+    date2.set(4,1,2002) ;
 
     cout << "\nDate of 2 after setFunction: " << date2.simpleRepre() << " " << date2.niceRepre() << endl ;
 
