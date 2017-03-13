@@ -9,7 +9,7 @@ private:
     int month, day, year;
 
     // Returns the number of elapsed days since October 15th, 1582
-    int elapsed() const;
+    int elapsed() ;
 
 public:
     // Constructor. A validation of the data must be made
