@@ -7,8 +7,6 @@ void ascendentOrder(MyDate array[], int size) ;
 
 int main()
 {
-    cout << "Hello World!" << endl ;
-
     MyDate date1(10, 31, 1995) ;
 
     cout << "\nMonth: " << date1.getMonthStr() << endl ;
