@@ -1,3 +1,16 @@
+// CCOM 4029: Lenguajes de Alto Nivel
+// Profesor: Eric Gamess
+//
+// Estudiantes:
+// Alex Castiillo Carrasco
+// Isamar López Rodríguez
+// Rafael L. Marrero Fernández
+
+//    Descripción :This file holds the implementation of the class myDate.
+//    This class manages dates which consits of three numbers that represent
+//    month, day and year.
+
+
 #include "mydate.h"
 #include <iostream>
 #include <sstream>
