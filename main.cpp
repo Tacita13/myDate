@@ -6,13 +6,21 @@
 // Isamar López Rodríguez
 // Rafael L. Marrero Fernández
 
+//    Descripción :This file holds the main that finally displays
+//    the values of the class myDate and an additional function 
+//    ascendentOrder that orders a given array of dates in ascending
+//    order.
+
 #include <iostream>
 #include "mydate.h"
 
 using namespace std;
 
+//orders a given array of dates in ascending order
 void ascendentOrder(MyDate array[], int size) ;
 
+//the main function holds a series of examples that test the class myDate
+//with its data members and function members
 int main()
 {
     MyDate date1(10, 31, 1995) ;
@@ -82,27 +90,22 @@ int main()
 
     return 0 ;
 }
-
+//this function orders a given array of dates with its size in ascending order
 void ascendentOrder(MyDate array[], int size)
 {
     int n, location ;
-
     MyDate temp ;
 
     for (n = 1 ; n < size ; n++)
         if (array[n] < array[n - 1])
         {
             temp = array[n] ;
-
             location = n ;
-
             do
             {
                 array[location] = array[location - 1] ;
-
                 location-- ;
             } while (location > 0 && array[location - 1] > temp) ;
-
             array[location] = temp ;
         }
 }
