@@ -1,3 +1,15 @@
+// CCOM 4029: Lenguajes de Alto Nivel
+// Profesor: Eric Gamess
+//
+// Estudiantes:
+// Alex Castiillo Carrasco
+// Isamar López Rodríguez
+// Rafael L. Marrero Fernández
+
+//    Descripción :This file holds the specification of the class myDate with its
+//    private and public data members and data functions. This class manages dates
+//    which consits of three numbers that represent month, day and year.
+
 #ifndef MYDATE_H
 #define MYDATE_H
 #include <string>
@@ -6,24 +18,35 @@ using namespace std;
 class MyDate
 {
 private:
-    int month, day, year;
-    int elapsed() const;
+   // Los attributos del objeto myDate
+   int month, day, year;
+   // Devuelve el número de días desde 15 de octubre de 1582
+   int elapsed() const;
+
 public:
 
-    // Constructores default y parameterizado
+    // Constructor parameterizado
     MyDate(int month, int day, int year);
+    
+    //Constructor default
     MyDate();
 
-    // Getters
+    // Funcion Getter del mes
     int getMonth();
+    
+    // Funcion Getter del día
     int getDay();
+    
+    // Funcion Getter del año
     int getYear();
 
-    // Setter
+    // Funcion Setter del mes, día y año
     void set(int month, int day, int year);
     
-    // Devuelven el dia de la semana y el mes
+    // Devuelven el dia de la semana
     string dayOfWeek() const;
+    
+    // Devuelven el dia del mes
     string getMonthStr() const;
     
     // Agrega dias a la fecha
